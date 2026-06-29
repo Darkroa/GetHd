@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HD Wallet Dashboard</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/htmx.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+        .card { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        input, button, select { padding: 10px; margin: 5px; }
+        button { background: #0066cc; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Crypto HD Wallet Dashboard</h1>
+
+    <div class="card">
+        <h2>Create New Master Seed</h2>
+        <form hx-post="/api/master-seed" hx-target="#result">
+            <input type="text" name="name" placeholder="Master Seed Name" required>
+            <button type="submit">Generate Master Seed</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Generate Bot Wallet</h2>
+        <form hx-post="/api/bot-wallet" hx-target="#bot-result">
+            <input type="text" name="master_seed_name" placeholder="Master Seed Name" required>
+            <input type="text" name="bot_name" placeholder="Bot Wallet Name" required>
+            <button type="submit">Create Bot Wallet</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+    <div id="bot-result"></div>
+
+    <div class="card">
+        <h2>Existing Master Seeds</h2>
+        <button hx-get="/api/master-seeds" hx-target="#seeds-list">Load Seeds</button>
+        <div id="seeds-list"></div>
+    </div>
+</body>
+</html>
