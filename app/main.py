@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import Base, engine
-from .admin import admin
+from .admin import setup_admin
 from .routers import wallets, auth
 
 app = FastAPI(title="HD Wallet Dashboard")
@@ -17,7 +17,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(wallets.router, prefix="/api")
 
-admin.mount_to(app)
+setup_admin(app)
 
 @app.get("/")
 def root():
