@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pydantic
+python-dotenv
+bip-utils
+cryptography
+python-jose[cryptography]
+passlib[bcrypt]
+sqladmin
+celery[redis]
+redis
+httpx
