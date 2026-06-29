@@ -26,3 +26,4 @@ class HDWalletManager:
     def get_addresses_from_db_seed(self, encrypted_mnemonic: str, account: int = 0, num: int = 5):
         mnemonic = decrypt_mnemonic(encrypted_mnemonic)
         return self.get_addresses_from_mnemonic(mnemonic, account, num)
+
