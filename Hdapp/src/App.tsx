@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const API = 'http://localhost:8000'
+const API = ''  // proxied through Vite → localhost:8000
 
 interface MasterSeed {
   id: number
