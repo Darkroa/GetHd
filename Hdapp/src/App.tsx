@@ -138,7 +138,7 @@ function App() {
 
   return (
     <div className="dashboard">
-      {/* Sidebar */}
+      {/* Desktop sidebar */}
       <aside className="sidebar">
         <div className="sidebar-brand">🔑 HD Wallet</div>
         <nav>
@@ -147,6 +147,16 @@ function App() {
         </nav>
         <button className="btn-logout" onClick={logout}>Logout</button>
       </aside>
+
+      {/* Mobile top nav */}
+      <div className="mobile-nav">
+        <span className="mobile-nav-brand">🔑 HD Wallet</span>
+        <div className="mobile-nav-links">
+          <a href="#seeds">Seeds</a>
+          <a href="#wallets">Wallets</a>
+        </div>
+        <button className="btn-logout" onClick={logout}>Out</button>
+      </div>
 
       {/* Main content */}
       <main className="content">
@@ -177,23 +187,25 @@ function App() {
             </div>
           )}
 
-          <table className="data-table">
-            <thead>
-              <tr><th>#</th><th>Name</th><th>Created</th></tr>
-            </thead>
-            <tbody>
-              {seeds.length === 0
-                ? <tr><td colSpan={3} className="empty">No seeds yet</td></tr>
-                : seeds.map(s => (
-                  <tr key={s.id}>
-                    <td>{s.id}</td>
-                    <td>{s.name}</td>
-                    <td>{new Date(s.created_at).toLocaleString()}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Created</th></tr>
+              </thead>
+              <tbody>
+                {seeds.length === 0
+                  ? <tr><td colSpan={3} className="empty">No seeds yet</td></tr>
+                  : seeds.map(s => (
+                    <tr key={s.id}>
+                      <td>{s.id}</td>
+                      <td>{s.name}</td>
+                      <td>{new Date(s.created_at).toLocaleString()}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* Bot Wallets */}
@@ -217,25 +229,27 @@ function App() {
 
           {botMsg && <div className={`msg-box ${botMsg.includes('Error') ? 'error' : 'success'}`}><p>{botMsg}</p></div>}
 
-          <table className="data-table">
-            <thead>
-              <tr><th>#</th><th>Name</th><th>BTC</th><th>ETH</th><th>Created</th></tr>
-            </thead>
-            <tbody>
-              {wallets.length === 0
-                ? <tr><td colSpan={5} className="empty">No bot wallets yet</td></tr>
-                : wallets.map(w => (
-                  <tr key={w.id}>
-                    <td>{w.id}</td>
-                    <td>{w.name}</td>
-                    <td><code>{w.btc_address || '—'}</code></td>
-                    <td><code>{w.eth_address || '—'}</code></td>
-                    <td>{new Date(w.created_at).toLocaleString()}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>BTC</th><th>ETH</th><th>Created</th></tr>
+              </thead>
+              <tbody>
+                {wallets.length === 0
+                  ? <tr><td colSpan={5} className="empty">No bot wallets yet</td></tr>
+                  : wallets.map(w => (
+                    <tr key={w.id}>
+                      <td>{w.id}</td>
+                      <td>{w.name}</td>
+                      <td><code>{w.btc_address || '—'}</code></td>
+                      <td><code>{w.eth_address || '—'}</code></td>
+                      <td>{new Date(w.created_at).toLocaleString()}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
         </section>
       </main>
     </div>
