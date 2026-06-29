@@ -2,11 +2,20 @@ from fastapi import APIRouter, Depends, Form, HTTPException, BackgroundTasks
 from sqlalchemy.orm import Session
 from ..database import get_db
 from ..crud import create_master_seed, get_master_seeds, create_bot_wallet
+from .. import models
 from ..wallet.hdwallet import HDWalletManager
 from .auth import get_current_user
 
 router = APIRouter()
 manager = HDWalletManager()
+
+@router.get("/seeds")
+def list_seeds(db: Session = Depends(get_db), user=Depends(get_current_user)):
+    return get_master_seeds(db)
+
+@router.get("/wallets")
+def list_wallets(db: Session = Depends(get_db), user=Depends(get_current_user)):
+    return db.query(models.BotWallet).all()
 
 @router.post("/master-seed")
 def create_seed(name: str = Form(...), db: Session = Depends(get_db), user=Depends(get_current_user)):
