@@ -137,29 +137,30 @@ function App() {
   }
 
   return (
-    <div className="dashboard">
-      {/* Desktop sidebar */}
-      <aside className="sidebar">
-        <div className="sidebar-brand">🔑 HD Wallet</div>
-        <nav>
-          <a href="#seeds" className="nav-item active">Master Seeds</a>
-          <a href="#wallets" className="nav-item">Bot Wallets</a>
-        </nav>
-        <button className="btn-logout" onClick={logout}>Logout</button>
-      </aside>
-
-      {/* Mobile top nav */}
+    <>
+      {/* Mobile top nav — outside the flex row */}
       <div className="mobile-nav">
         <span className="mobile-nav-brand">🔑 HD Wallet</span>
         <div className="mobile-nav-links">
           <a href="#seeds">Seeds</a>
           <a href="#wallets">Wallets</a>
         </div>
-        <button className="btn-logout" onClick={logout}>Out</button>
+        <button className="btn-logout" onClick={logout}>Logout</button>
       </div>
 
-      {/* Main content */}
-      <main className="content">
+      <div className="dashboard">
+        {/* Desktop sidebar */}
+        <aside className="sidebar">
+          <div className="sidebar-brand">🔑 HD Wallet</div>
+          <nav>
+            <a href="#seeds" className="nav-item active">Master Seeds</a>
+            <a href="#wallets" className="nav-item">Bot Wallets</a>
+          </nav>
+          <button className="btn-logout" onClick={logout}>Logout</button>
+        </aside>
+
+        {/* Main content */}
+        <main className="content">
         <header className="top-bar">
           <h1>HD Wallet Dashboard</h1>
           <span className="badge">{seeds.length} seeds · {wallets.length} wallets</span>
@@ -251,8 +252,9 @@ function App() {
             </table>
           </div>
         </section>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   )
 }
 
